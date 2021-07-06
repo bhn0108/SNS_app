@@ -1,3 +1,9 @@
+<?php
+if (isset($error['name']) && $_POST['name'] === 0) {
+	$error['name'] = 'blank';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,9 +24,12 @@
 <p>次のフォームに必要事項をご記入ください。</p>
 <form action="" method="post" enctype="multipart/form-data">
 	<dl>
-		<dt>ニックネーム<span class="required">必須</span></dt>
+		<dt>ユーザー名<span class="required">必須</span></dt>
 		<dd>
         	<input type="text" name="name" size="35" maxlength="255" value="" />
+			<?php if (isset($error['name']) && $error['name'] === 'blank'): ?>
+			<p class="error">* ユーザー名を入力してください</p>
+			<?php endif; ?>
 		</dd>
 		<dt>メールアドレス<span class="required">必須</span></dt>
 		<dd>
